@@ -1,0 +1,31 @@
+.usersChips md-content.autocomplete {
+  min-height: 250px; }
+.usersChips .md-item-text.compact {
+  padding-top: 8px;
+  padding-bottom: 8px; }
+.usersChips .contact-item {
+  box-sizing: border-box; }
+.usersChips .contact-item.selected {
+  opacity: 0.5; }
+.usersChips .contact-item.selected h3 {
+  opacity: 0.5; }
+.usersChips .contact-item .md-list-item-text {
+  padding: 14px 0; }
+.usersChips .contact-item .md-list-item-text h3 {
+  margin: 0 !important;
+  padding: 0;
+  line-height: 1.2em !important; }
+.usersChips .contact-item .md-list-item-text h3, .usersChips .contact-item .md-list-item-text p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
+@media (min-width: 900px) {
+  .usersChips .contact-item {
+    float: left;
+    width: 33px; } }
+.usersChips md-contact-chips {
+  margin-bottom: 10px; }
+.usersChips .md-chips {
+  padding: 5px 0 8px; }
+.usersChips .fixedRows {
+  height: 250px;}

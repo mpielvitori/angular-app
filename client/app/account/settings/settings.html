@@ -1,0 +1,61 @@
+<!-- HEADER TOP -->
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="home blog">
+  <div id="wrapper">
+    <!--BEGIN .content-->
+    <div class="content home blog">
+      <!--BEGIN .container-->
+      <div class="container container-center row">
+<!-- HEADER TOP -->
+
+<div> <!-- class="container"> Comento class porque hereda del container evolve -->
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Cambiar Password</h1>
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
+
+        <div class="form-group">
+          <label>Password actual</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Nuevo Password</label>
+
+          <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                 ng-minlength="3"
+                 required/>
+          <p class="help-block"
+             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
+            El password debe tener al menos 3 caracteres.
+          </p>
+        </div>
+
+        <p class="help-block"> {{ message }} </p>
+
+        <button class="btn btn-lg btn-primary" type="submit">Actualizar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER BOTTOM -->
+        <!--END .container-->
+      </div>
+      <!--END .content-->
+    </div>
+    <!--BEGIN .content-bottom-->
+    <div class="content-bottom">
+      <!--END .content-bottom-->
+    </div>
+  </div>
+</div>
+<div ng-include="'components/static/footer.html'"></div>
+<!-- HEADER BOTTOM -->

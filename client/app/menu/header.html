@@ -1,0 +1,53 @@
+<style>
+  .md-menu {
+    padding: 0px;
+  }
+</style>
+<md-content ng-init="load()">
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>
+        <a href="#" ui-sref="public.home" style="font-family: 'Lobster'; font-weight: normal; font-size: 26px;">App - Back office</a>
+      </h2>
+      <span flex=""></span>
+      <!--<md-button class="md-icon-button" aria-label="More">
+        <md-icon md-svg-icon="assets/icons/menu_white.svg"></md-icon>
+      </md-button>-->
+
+      <div class="nav navbar-top-links navbar-right">
+        <md-button aria-label="Menú flotante" class="md-icon-button" ng-click="toggleLeft()" hide-gt-md="" >
+          <md-icon md-svg-src="assets/icons/menu_white.svg"></md-icon>
+        </md-button>
+      </div>
+
+      <md-menu class="nav navbar-top-links navbar-right">
+        <md-button aria-label="Menú de usuario" ng-click="openMenu($mdOpenMenu, $event)" >
+          <md-icon md-svg-src="assets/icons/ic_account_circle_white.svg"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <!--<md-menu-item>
+            <md-button ng-click="redial($event)">
+              <md-icon md-svg-src="assets/icons/ic_account_circle_black.svg"></md-icon>
+              Redial
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button disabled="disabled" ng-click="checkVoicemail()">
+              <md-icon md-svg-src="assets/icons/ic_account_circle_black.svg"></md-icon>
+              Check voicemail
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>-->
+          <md-menu-item>
+            <md-button ng-click="logout()">
+              <md-icon md-svg-src="assets/icons/ic_exit_to_app_black.svg"></md-icon>
+              Cerrar sesión
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+    </div>
+  </md-toolbar>
+</md-content>

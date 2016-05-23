@@ -1,0 +1,211 @@
+<style>
+    input {
+        width: 50%
+    }
+
+    .md-contact-suggestion .md-contact-name, .md-contact-suggestion .md-contact-email {
+        display: inline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    md-autocomplete {
+        min-width: 400px;
+    }
+
+    @media (min-width: 900px) {
+        .usersChips .contact-item {
+            float: left;
+            width: 33%;
+        }
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+</style>
+
+
+<div>
+
+    <div data-ng-init="loadEmpresa()">
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1 class="md-flex">Empresa <i>{{empresa.nombre}}</i></h1>
+            </div>
+        </md-toolbar>
+
+        <form data-ng-submit="saveEmpresa()" name="empresaform" role="form" enctype="multipart/form-data">
+
+            <br layout-padding>
+
+            <div flex="100">
+                <md-input-container>
+                    <label>Código</label>
+                    <input ng-model="empresa.nombre" style="text-transform: uppercase;" name="nombre" ng-disabled="empresa._id != null" required>
+
+                    <div data-ng-messages="empresaform.nombre.$error" class="form-input-error">
+                        <div data-ng-message="required">Dato requerido.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div flex="100">
+                <md-input-container>
+                    <label>Nombre</label>
+                    <input ng-model="empresa.razonSocial" name="razonSocial" ng-disabled="!editar" required>
+
+                    <div data-ng-messages="empresaform.razonSocial.$error" class="form-input-error">
+                        <div data-ng-message="required">Dato requerido.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div flex="100">
+                <md-input-container>
+                    <label>Dirección</label>
+                    <input ng-model="empresa.direccion" name="direccion" ng-disabled="!editar" required>
+
+                    <div data-ng-messages="empresaform.direccion.$error" class="form-input-error">
+                        <div data-ng-message="required">Dato requerido.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div flex="100">
+                <md-input-container>
+                    <label>Teléfono</label>
+                    <input data-ng-model="empresa.telefono" name="telefono" required ng-pattern="phonePattern"
+                           ng-disabled="!editar">
+
+                    <div data-ng-messages="empresaform.telefono.$error" class="form-input-error">
+                        <div data-ng-message="required">Dato requerido.</div>
+                        <div data-ng-message="pattern">Teléfono inválido 011-1234-5678.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div flex="100">
+                <md-input-container>
+                    <label>e-mail</label>
+                    <input data-ng-model="empresa.email" name="mail" required type="email" ng-disabled="!editar">
+
+                    <div data-ng-messages="empresaform.mail.$error" class="form-input-error">
+                        <div data-ng-message="required">Dato requerido.</div>
+                        <div data-ng-message="email">Ingrese un e-mail válido ejemplo@dominio.com</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div flex="100">
+                <md-input-container>
+                    <label>Contraseña</label>
+                    <input ng-model="empresa.password" name="password" ng-disabled="!editar" required type="password">
+
+                    <div data-ng-messages="empresaform.password.$error" class="form-input-error">
+                        <div data-ng-message="required">Dato requerido.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div flex="100">
+                <md-input-container>
+                    <label>Repita su contraseña</label>
+                    <input ng-model="passwordValidate" name="passwordValidate" ng-disabled="!editar" type="password">
+
+                    <div data-ng-messages="empresaform.passwordValidate.$error" class="form-input-error">
+                        <!--<div data-ng-message="required">Dato requerido.</div>-->
+                        <div style="color:rgb(255,152,0); font-size:12px;" ng-show="invalidPassword">Las contraseñas no
+                            coinciden.
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div flex="100">
+                <md-input-container>
+                    <label>Contacto</label>
+                    <input ng-model="empresa.contacto" ng-disabled="!editar">
+                </md-input-container>
+            </div>
+
+            <div flex="100">
+                <label style="color:rgba(0,0,0,0.54);">Logo</label><br/>
+                <img ng-show="!empresa.imagen" ng-src="/assets/images/default_user_noimage.png"/>
+                <img style="height:400px;width:400px;" ng-show="empresa.imagen"
+                     ng-src="{{empresa.imagen.src}}"/><br/><br/>
+                <span class="btn btn-default btn-file">
+                    Buscar imagen<input type="file" name="myImage" image-with-preview
+                                        ng-model="empresa.imagen"
+                                        accept="image/jpeg,image/png"
+                                        dimensions="height < 400 && width < 400">
+                </span><br/>
+                <span class="error" ng-show="empresaform.myImage.$error.image">
+                    La imagen no es un JPEG o PNG!
+                </span><br/>
+                <span class="error" ng-show="empresaform.myImage.$error.dimensions">
+                    Dimensiones inválidas! Se espera una imagen de dimensiones menor a 400x400.
+                </span>
+            </div>
+
+            <div class="md-padding autocomplete usersChips" style="padding-top: 20px;">
+                <label style="color:rgba(0,0,0,0.54);">Usuarios habilitados</label>
+                <md-contact-chips
+                        ng-model="contacts"
+                        md-contacts="querySearch($query)"
+                        md-contact-name="name"
+                        md-contact-image="image"
+                        md-contact-email="email"
+                        md-require-match="true"
+                        md-highlight-flags="i"
+                        filter-selected="filterSelected"
+                        placeholder="Ingrese un usuario">
+                </md-contact-chips>
+                <md-list class="fixedRows">
+                    <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in allContacts"
+                                  ng-if="contacts.indexOf(contact) < 0">
+                        <img ng-src="{{contact.image}}" class="md-avatar"/>
+
+                        <div class="md-list-item-text compact">
+                            <h3>{{contact.name}}</h3>
+
+                            <p>{{contact.email}}</p>
+                        </div>
+                    </md-list-item>
+                    <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, contact) in contacts">
+                        <img ng-src="assets/images/account_verified_black.png" class="md-avatar"/>
+
+                        <div class="md-list-item-text compact">
+                            <h3>{{contact.name}}</h3>
+
+                            <p>{{contact.email}}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="loading">Guardar</md-button>
+            <md-button class="md-raised" ng-click="cancel()" ng-disabled="loading">Cancelar</md-button>
+            <div layout="row" layout-sm="column" layout-align="space-around" style="min-height: 100px;">
+                <md-progress-circular md-mode="indeterminate" ng-if="loading"></md-progress-circular>
+            </div>
+
+            </md-content>
+        </form>
+
+
+        <!-- header -->
+    </div>
+</div>

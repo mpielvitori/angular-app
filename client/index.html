@@ -1,0 +1,140 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <script type="text/javascript"
+            src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>SisTAC</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <!--<link rel="icon" type="image/ico" href="favicon.ico"/>-->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+      <link rel="stylesheet" href="bower_components/angular-feeds/app/angular-feeds/angular-feeds.css" />
+      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+      <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.css" />
+      <link rel="stylesheet" href="bower_components/please-wait/build/please-wait.css" />
+      <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.css" />
+      <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <link rel="stylesheet" href="app/app.css">
+      <!-- injector:css -->
+      <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/empresa/empresa.css">
+      <link rel="stylesheet" href="app/empresa/view/view.css">
+      <link rel="stylesheet" href="app/home/main.css">
+      <link rel="stylesheet" href="components/modal/modal.css">
+      <!-- endinjector -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="applicationSample">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <script src="bower_components/please-wait/build/please-wait.min.js"></script>
+    <script type="text/javascript">
+      window.loading_screen = window.pleaseWait({
+        logo: 'assets/images/SisTAC.ico',
+        backgroundColor: '#2c3e50',
+        loadingHtml: "<div class='sk-spinner sk-spinner-chasing-dots'><div class='sk-dot1'></div><div class='sk-dot2'></div></div>"
+      });
+    </script>
+    <!-- Estructura de vista para Web publica -->
+    <div ui-view="menu" class="fadein"></div>
+    <div ui-view="header" class="fadein"></div>
+    <div ui-view="body" class="fadein"></div>
+    <div ui-view="footer" class="fadein"></div>
+
+    <!-- Estructura de vista para backoffice -->
+    <div ui-view="headerLab" class="fadein"></div>
+    <section layout="row" flex="" block-ui="mainBlockUI">
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-content layout-padding="">
+          <div ui-view="menuLab" class="fadein"></div>
+        </md-content>
+      </md-sidenav>
+      <md-content flex="" layout-padding="">
+        <div ui-view="bodyLab" class="fadein"></div>
+      </md-content>
+    </section>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+    <script src="bower_components/pdfmake/build/pdfmake.min.js"></script>
+    <script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="bower_components/angular/angular.min.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+      <script src="bower_components/lodash/lodash.min.js"></script>
+      <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+      <script src="bower_components/angular-route/angular-route.min.js"></script>
+      <script src="bower_components/angular-feeds/app/angular-feeds/angular-feeds.js"></script>
+      <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+      <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+      <script src="bower_components/angular-material/angular-material.min.js"></script>
+      <script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+      <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+      <script src="bower_components/angular-re-captcha/angular-re-captcha.js"></script>
+      <script src="bower_components/ng-image-input-with-preview/dist/ng-image-input-with-preview.min.js"></script>
+      <script src="bower_components/ng-youtube-embed/build/ng-youtube-embed.min.js"></script>
+      <script src="bower_components/ng-image-input-with-preview/dist/ng-image-input-with-preview.js"></script>
+      <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+      <script src="bower_components/angular-block-ui/dist/angular-block-ui.min.js"></script>
+      <script src="bower_components/Chart.js/Chart.js"></script>
+      <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+      <script src="bower_components/moment/moment.js"></script>
+      <!-- endbower 1-->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,client}) app/app.js -->
+        <script src="app/app.js"></script>
+          <!-- injector:js -->
+          <script src="app/account/login/login.controller.js"></script>
+          <script src="app/account/settings/settings.controller.js"></script>
+          <script src="app/backOffice/backOffice.js"></script>
+          <script src="app/empresa/empresa.controller.js"></script>
+          <script src="app/empresa/empresa.js"></script>
+          <script src="app/empresa/view/view.empresa.controller.js"></script>
+          <script src="app/home/home.controller.js"></script>
+          <script src="app/home/home.js"></script>
+          <script src="app/home/navbar/navbar.controller.js"></script>
+          <script src="app/menu/menu.controller.js"></script>
+          <script src="components/auth/auth.service.js"></script>
+          <script src="components/auth/empresa.service.js"></script>
+          <script src="components/auth/user.service.js"></script>
+          <script src="components/modal/modal.service.js"></script>
+          <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+          <!-- endinjector -->
+        <!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,56 @@
+<div>
+
+  <div>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1 class="md-flex">Empresas</h1>
+      </div>
+    </md-toolbar>
+
+    <md-content layout-no-wrap>
+      <table st-table="displayedCollection" st-safe-src="empresasDB" class="table table-striped">
+        <thead>
+        <tr>
+          <th st-sort="nombre">Código</th>
+          <th st-sort="razonSocial">Nombre</th>
+          <th st-sort="direccion">Dirección</th>
+          <th st-sort="telefono">Teléfono</th>
+        </tr>
+        <tr>
+          <th colspan="4">
+            <input st-search placeholder="Búsqueda..." class="input-sm form-control" type="search"/>
+          </th>
+          <th colspan="1"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+          <td>{{row.nombre}}</td>
+          <td>{{row.razonSocial}}</td>
+          <td>{{row.direccion}}</td>
+          <td>{{row.telefono}}</td>
+          <td>
+            <a class="btn btn-primary" ui-sref=".viewEmpresa({id:row._id})">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <a ng-click="delete(row)" class="btn btn-danger">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="5" class="text-center">
+            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+      <md-button class="md-fab md-primary md-fab-top-right" ui-sref=".addEmpresa" aria-label="Agregar empresa">
+        <md-icon md-svg-src="assets/images/add_white.svg"></md-icon>
+      </md-button>
+    </md-content>
+
+  </div>
+</div>
