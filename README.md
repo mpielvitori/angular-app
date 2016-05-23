@@ -1,4 +1,4 @@
-# SisTAC - webapp
+# AngularApp
 
 ## Technologies
 
@@ -21,8 +21,8 @@ Initial app from Yeoman generator `generator-angular-fullstack`-`v2.0.13`
 	[MEAN](http://learn.mean.io/)
 
 ### Installation 	
-1. Clone the repository $ git clone git@github.com:mpielvitori/sistacLab.git
-1. Go into the repository $ cd sistacLab/
+1. Clone the repository $ git clone git@github.com:mpielvitori/angularApp.git
+1. Go into the repository $ cd angularApp/
 1. Install Node dependencies with NPM $ npm install
 1. Install packages dependencies with Bower $ bower install
 1. Wire up the database connection found in `/server/config/environment/development.js`.
